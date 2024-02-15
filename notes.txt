@@ -1,0 +1,8 @@
+TEMPLATE ENGINES
+
+A template engine enables u to use static template files in your app. 
+At runtime, template engine replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. 
+This approach makes it easier to design HTML page.
+
+Handlebars & Mustache both r logicless templating language that keep the view and the code separated like we all they should be
+
