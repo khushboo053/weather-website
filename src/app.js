@@ -1,4 +1,4 @@
-// AFTER ADDING PARTIALS, RUN THIS COMMAND : nodemon src/app.js -e js, hbs
+// AFTER ADDING PARTIALS, RUN THIS COMMAND FOR RUNNING THIS FILE : nodemon src/app.js -e js, hbs
 
 const path = require("path"); // no need to install it coz core node module its inbuilt
 const express = require("express");
@@ -11,6 +11,7 @@ const forecast = require("./utils/forecast");
 // console.log(__dirname);
 
 const app = express();
+const port = process.env.PORT || 5000;
 
 // Define paths for express config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -49,7 +50,8 @@ app.get("/help", (req, res) => {
   res.render(
     "C:/Users/KhushbooMakhija/Desktop/Learning/NodeJS Course/04_Web-server/templates/views/help.hbs",
     {
-      helpText: "This is helpful text: Where u r? Enter to the input field! U will be getting weather information of your location with its location",
+      helpText:
+        "This is helpful text: Where u r? Enter to the input field! U will be getting weather information of your location with its location",
       title: "Help",
       name: "Khushboo Makhija",
     }
@@ -71,23 +73,26 @@ app.get("/weather", (req, res) => {
     });
   }
 
-  geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
-    if (error) {
-      return res.send({ error });
-    }
-
-    forecast(latitude, longitude, (error, forecastData) => {
+  geocode(
+    req.query.address,
+    (error, { latitude, longitude, location } = {}) => {
       if (error) {
         return res.send({ error });
       }
 
-      res.send({
-        forecast: forecastData,
-        location,
-        address: req.query.address,
+      forecast(latitude, longitude, (error, forecastData) => {
+        if (error) {
+          return res.send({ error });
+        }
+
+        res.send({
+          forecast: forecastData,
+          location,
+          address: req.query.address,
+        });
       });
-    });
-  });
+    }
+  );
 
   // res.send({
   //   forecast: "It is snowing",

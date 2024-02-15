@@ -22,6 +22,10 @@ const forecast = (longitude, latitude, callback) => {
       callback(undefined, {
         windSpeed: body.wind.speed,
         windDeg: body.wind.deg,
+        humidity: body.main.humidity,
+        pressure: body.main.pressure,
+        feels_like: body.main.feels_like,
+        weather: body.weather[0].description,
       });
     }
   });

@@ -41,8 +41,19 @@ weatherForm.addEventListener("submit", (e) => {
       } else {
         messageOne.textContent = data.location;
         // messageTwo.textContent = data.forecast;
-        messageTwo.textContent = "Wind Speed: " +
-          data.forecast.windSpeed + "m/s, Wind Degree: " + data.forecast.windDeg + "°";
+        messageTwo.textContent =
+          "Wind Speed: " +
+          data.forecast.windSpeed +
+          "m/s, Wind Degree: " +
+          data.forecast.windDeg +
+          "° and Humidity : " +
+          data.forecast.humidity +
+          "%. with pressure of " +
+          data.forecast.pressure +
+          ". It feels like " +
+          data.forecast.feels_like +
+          " because weather is like " +
+          data.forecast.weather + ".";
         // console.log(data.location);
         // console.log(data.forecast);
       }
